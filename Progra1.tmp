@@ -194,13 +194,21 @@ Para poder acceder a estos valores y no tener que implementar mas
 codigo, un constructor o hasta replicacion de codigo se hace un get
 y un set de exe_time para desde el archivo de pruebas asignar el 
 tiempo de ejecucion.
-Sin embargo se dede de contar con una funcion init_thread2
+Sin embargo se dede de contar con una funcion init_thread2 que se encarga 
+de asignar el valor de tiempo de ejecucion que viene desde el archivo 
+de pruebas.
+
 ---- SYNC ----
 
->>Describa como existe una condicion de carrera en
-thread_set_priority() y explique como su algoritmo lo resuelve. 
-Justifique por que un lock podria o no podria funcionar para este 
-algoritmo
+>>  Para el algoritmo no se tiene una condicion de carrera en 
+thread_set_priority(). Esto por que el algoritmo que se diseña es 
+apropiativo. El hecho de que sea apropiativo implica que el trabajo 
+mas corto se apropia del recurso hasta que termine su ejecucion. 
+Esto sin importar si ahora hay un proceso que dure menos con el que 
+se puede cambiar.
+Un lock no va a ser necesario por que en ningun momento se van a tener 
+dos procesos compitiendo por el mismo espacio en la region critica.
+
 
 ---- JUSTIFICACION ----
 
@@ -208,10 +216,38 @@ algoritmo
 
 >>Describa la razon por la que se decidio implementar este diseño 
 y en que maneras es superior a otras soluciones que consideraron.
->>Realize una corta critica, positiva o negativa, sobre su 
-algoritmo y describa como los cambios de contexto en este 
-calendarizador y las reglas y politicas implementadas afectan el 
-desempeño del procesador.
+
+>> Para la implementacion del algoritmo se tomaron en cuenta aspectos 
+como rendimiento, modificacion, alteracion y cambios en el codigo 
+original que pudiera generar errores o la posibilidad crear nuevos 
+modulos encargados de efectuar el algoritmo. Al final se toma la decision
+de diseñar el algoritmo asignando el tiempo de cada funcion dependiendo
+de la funcion con la que se estuviera trabajando.
+>> En un inicio se trato de hacer dinamicamente para cada thread. El objetivo
+era que en el momento que se creaba se calculara el tiempo de ejecucion de 
+cada funcion pero el timer que implementa pintos presento problemas por el 
+uso de ticks. El pricipal problema era que la funcion contaba la cantidad de 
+ticks desde el momento que se "booteaba" el sistema operativo y en un momento
+dado se iba a tornar constante sin importar el tamaño de la funcion que se 
+estaba ejecutando. 
+>> Con un timer que indicara el tiempo real de ejecucion la implementacion
+en tiempo real hubiera sido mas sencilla y eficiente.
+
+
+>> El algoritmo cumple con el objetivo y se implementa como es. Sin embargo
+de poder calcular los tiempos de forma dinamica haria el algoritmo mucho
+mas eficiente. Para fines educativos se implementa la solucion conociendo
+por aparte los tiempos que tardan cada funcion y dependiendo de la funcion
+que se implementa se asigna el tiempo de ejecucion. Ahora es claro que
+entre mas procesos ejecutandose y que tenga un tiempo de ejecucion muy 
+pequeño se van a tener mas cambios de contexto. Sin embargo la funcion que
+se encarga de indicar cual proceso se debe de ejecutar ya recibe todo los 
+procesos ordenados empezando por el proceso con el menor tiempo de ejecucion.
+>> En caso de recibir un proceso nuevo con un tiempo de ejecucion el mismo se
+inserta al inicio de la lista para ser ejecutado. Esto no afecta el desempeño
+del procesador por que la politica del algoritmo es ejecutar el proceso mas
+corto de primero y la lista de procesos siempre tiene los con tiempo de ejecucion
+menor al inicio.
 
 ___________________________________________________________________ 
 
@@ -241,14 +277,29 @@ para el calculo de "elapsed_avg".
 
 >> Explique en prosa el funcionamiento de su algoritmo, utilizando 
 el nombre de las variables utilizadas y funciones.
+Este algoritmo calendariza los procesos asignando el procesador por 
+un tiempo determinado. Este tiempo determinado es el quantum. El quantun 
+debe ser inferior a la duracion promedio del 80% de los procesos 
+(Silberchatz, Galvin y Gagne 2010:188). Este primera recomendacion es
+del libro citado sim emargo en clase tambien se hace una recomendacion
+de hacer un quantum de aproximadamente la mitad del tiempo que mas dure.
+El algoritmo toma la variable TIME_SLICE definida con un valor de 30.
+Dependiendo el proceso y su valor posicion en la cola es el que se ejecuta.
+El procesador va a ejecutar el proceso del head de la lista pero cuando se 
+acaba el quantum este proceso se vuelve a calendarizar poniendolo en la cola 
+de la cola. Cada vez que inicie un nuevo proceso se pone en la cola.
 
 
 ---- SYNC ----
 
->>Describa como existe una condicion de carrera en
-thread_set_priority() y explique como su algoritmo lo resuelve. 
-Justifique por que un lock podria o no podria funcionar para este 
-algoritmo
+>> Si se va a tener una condicion de carrera sin embargo conociendo
+el tiempo de los procesos se puede definir un quantum dinamico. Claro 
+esta el hecho de poder definir un quantum de esta forma seria la forma
+ideal mas no la real. Basados en las recomendaciones, metodos estadisticos
+y pruebas se puede definir un quantum lo mas cercano al ideal. La 
+condicion de carrea es clara pero sin nos ponemos criticos al comparar con 
+otros algoritmos no va a ser tanta pues cada proceso va a desocupar el 
+procesador una vez finalice el quantum.
 
 ---- JUSTIFICACION ----
 >>Describa la razon por la que se decidio implementar este diseño 
@@ -257,4 +308,17 @@ y en que maneras es superior a otras soluciones que consideraron.
 algoritmo y describa como los cambios de contexto en este 
 calendarizador y las reglas y politicas implementadas afectan el 
 desempeño del procesador.
+
+>> Para el diseño se toma como pieza fundamental definir un quantum
+correcto. Se parte de que se saben los tiempos de ejecucion de los procesos 
+que se ejecutan. Tomando en cuenta las recomendaciones del libro de Galvin y 
+Gagne y lo visto en clase se establece un quantum de 30. 
+>> La funcion que dura mas tiempo es de 144 ticks y la de menos es de 25 ticks
+por lo que se decide como decisionde diseño un quantum de 30. Esto para que los 
+procesos pequeños terminen en un quantum. El problema de definir un quantum
+muy pequeño es que los cambios de contexto van a ser muy seguidos y no es lo 
+recomendable. Por otro lado se tiene que si se define un quantum muy grande 
+los procesos pequeños van a desaprovechar tiempo pues van a terminar su ejecucion
+aunque el quantum todavia no finalice.
+
 ___________________________________________________________________
