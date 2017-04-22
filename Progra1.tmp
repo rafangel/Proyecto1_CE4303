@@ -9,7 +9,149 @@
 Rafael Angel Chacón Fallas <rafangel1228@gmail.com>
 Steven Fabian Ávila Ardón <sfaa03@gmail.com>
 
-Calendarizador <tipo de calendarizador>
+
+Calendarizador First Come, First Served
+=======================================
+
+---- Estructuras de datos ----
+
+>> int64_t start;
+> Tiempo, en "Ticks", de la última inserción del thread a la lista
+ de "ready". 
+
+>> int64_t elapsed_avg;
+> Tiempo promedio, en "Ticks", que el proceso pasó esperando en la
+ lista de "ready". 
+
+>> int64_t prev_time;
+> Tiempo , en "Ticks", en el que se ejecuta el thread, utilizado 
+para el calculo de "elapsed_avg". 
+ 
+>> int counter;
+> Cantidad de veces que el proceso estuvo en la lista de "ready".
+
+
+---- ALGORITMOS ----
+
+>> El algoritmo toma como base el calendarizador por defecto de 
+Round Robin. La primera modificación importante es la eliminación
+ del Quantum con la variable "TIME_SLICE" ya que su utilización era 
+innecesaria para el algoritmo FCFS y de esta forma el thread 
+continuaba su ejecución hasta finalizar. La siguiente modificación se
+ dió en la función schedule() del archivo thread.c, ya que se debía
+ considerar el caso especial de los threads "idle" y "main", creados
+ al inicio y eliminados hasta el final de la ejecución por el sistema.
+ Dado que el algoritmo FCFS ejecuta cada thread hasta su finalización,
+ se presentaba un ciclo de ejecución infinito ya que estos threads no
+ liberaban el procesador. Para corregir esto, la función schedule()
+ utiliza el algoritmo Round Robin, para dichos threads únicamente.
+
+---- SYNC ----
+
+>>Aunque este algoritmo no utiliza la función thread_set_priority(),
+la condición de carrera esta presente desde la definición del 
+algoritmo.
+Un lock no sería relevante ya que solo un proceso tiene acceso a los
+recursos simultaneamente y hasta su finalización.
+
+---- JUSTIFICACION ----
+>> Se decidió realizar esta solución ya que modificaba menos lineas
+de código y por ende era menos propenso a errores, en comparación a
+realizar la implementación del algoritmo desde cero.
+>>Dada la necesidad de declarar casos especiales para los dos threads
+mencionados, el algoritmo podría presentar problemas si se cambian 
+los identificadores de dichos threads en algún momento, cayendo en 
+el error mencionado anteriormente.
+___________________________________________________________________
+
+
+Calendarizador Colas Multinivel
+=======================================
+
+---- Estructuras de datos ----
+
+>> int64_t start;
+> Tiempo, en "Ticks", de la última inserción del thread a la lista 
+de "ready". 
+
+>> int64_t elapsed_avg;
+> Tiempo promedio, en "Ticks", que el proceso pasó esperando en la
+ lista de "ready". 
+ 
+>> int counter;
+> Cantidad de veces que el proceso estuvo en la lista de "ready".
+
+>> int priority;  
+> Valor de prioridad del thread, utilizado para seleccionar la cola 
+correspondiente.
+
+>> int niceness;
+> Valor de amabilidad del thread, utilizado para el calculo de
+"priority".
+		
+>> int load_avg;
+> Tiempo promedio de carga, calculado con la cantidad de threads en 
+espera en todas las colas.
+			
+>> int recent_cpu;
+> Cantidad de tiempo de cpu dado al thread recientemente. Calculado 
+utilizando "load_avg" y "niceness".
+
+>> static struct list ready_list2;
+>> static struct list ready_list3;
+>> static struct list ready_list4;
+> listas adicionales de prioridad inferior a la existente "ready_list".
+
+---- ALGORITMOS ----
+
+>> El algoritmo toma como base el calendarizador por defecto de 
+Round Robin, realizando dos cambios importantes. El primero es la 
+incorporación del cálculo de "priority", tal como se solicitó, 
+basandose en los conceptos y fórmulas provistas, utilizando para ello 
+los prototipos de funciones existentes. El segundo es la
+incorporación de listas para el manejo de distintas prioridades. 
+En total se utilizan 4 listas, basandose en el modelo propuesto por
+Caltech en:
+http://courses.cms.caltech.edu/cs124/lectures-wi2016/CS124Lec12.pdf 
+Donde separan los procesos en los tipos: System, Interactive,
+Interactive editing y Batch. Se utilizan todos los tipos pensando 
+en su implementación futura, aunque para este trabajo solo se cuente
+con los tipos "CPU Bounded" y "I/O Bounded".
+Cada una de las listas mencionadas utiliza el algoritmo Round Robin
+internamente para la calendarización de los threads. Esto con el fin 
+de minimizar los efectos de la condición de carrera mencionada en 
+el siguiente punto, así como para evitar starvation dentro de cada 
+lista, sin embargo siempre existe esta posibilidad para procesos en 
+distintas filas. 
+Nuevamente se consideran casos especiales para los threads "idle" y
+"main" ya que al no finalizar ocasionaban starvation en las listas 
+de menor prioridad a la suya, esto se solucionó forzandolos a estar 
+siempre en la lista de menor prioridad.
+
+
+---- SYNC ----
+
+>>La condición de carrera con la función thread_set_priority() se 
+presenta ya que el orden en que los threads calculan su prioridad
+afecta su ordenamiento en la lista dado el algoritmo Round Robin 
+interno de cada lista. Sin embargo, precisamente por la utilización
+de Round Robin el efecto de esta condicion de carrera reduce la 
+cantidad de ciclos perdidos en espera.
+
+---- JUSTIFICACION ----
+
+>>Como se mencionó anteriormente, la selección de la cantidad de
+listas se basó en lo propuesto por Caltech, en contra parte de la 
+propuesta original de tener solo 2 listas para los dos tipos de 
+threads solicitados. Esto permite además agrupar en mejor medida los
+threads con prioridades más similares entre si.
+>>Dada la necesidad de varias listas y a los calculos de prioridades, 
+el algoritmo es más costoso en cuanto a recursos y desempeño. Por el
+otro lado agiliza la ejecución de threads con una alta prioridad.
+___________________________________________________________________
+
+
+Calendarizador Shortest Job First
 =======================================
 
 ---- Estructuras de datos ----
@@ -42,4 +184,34 @@ algoritmo y describa como los cambios de contexto en este
 calendarizador y las reglas y politicas implementadas afectan el 
 desempeño del procesador.
 
+___________________________________________________________________ 
+
+
+Calendarizador Round Robin
+=======================================
+
+---- Estructuras de datos ----
+
+
+
+---- ALGORITMOS ----
+
+>> Explique en prosa el funcionamiento de su algoritmo, utilizando 
+el nombre de las variables utilizadas y funciones.
+
+
+---- SYNC ----
+
+>>Describa como existe una condicion de carrera en
+thread_set_priority() y explique como su algoritmo lo resuelve. 
+Justifique por que un lock podria o no podria funcionar para este 
+algoritmo
+
+---- JUSTIFICACION ----
+>>Describa la razon por la que se decidio implementar este diseño 
+y en que maneras es superior a otras soluciones que consideraron.
+>>Realize una corta critica, positiva o negativa, sobre su 
+algoritmo y describa como los cambios de contexto en este 
+calendarizador y las reglas y politicas implementadas afectan el 
+desempeño del procesador.
 ___________________________________________________________________

@@ -89,9 +89,9 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
-    int niceness;			/*Niceness value of thread*/
-    int load_avg;			/*Load Average time updated every second*/
-    int recent_cpu;			/*the amount of CPU time a thread has received "recently"*/
+    int niceness;			/*Niceness value of thread. */
+    int load_avg;			/*Load Average time. */
+    int recent_cpu;			/*the amount of CPU time a thread has received "recently". */
     int64_t start;
     int64_t elapsed_avg;
     int counter;
