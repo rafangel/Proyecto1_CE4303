@@ -493,7 +493,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->status = THREAD_BLOCKED;
   strlcpy (t->name, name, sizeof t->name);
   t->stack = (uint8_t *) t + PGSIZE;
-  t->priority = priority;
+  //t->priority = priority;
   t->start = timer_ticks();
   t->elapsed_avg = 0;
   t->counter = 1;
@@ -594,7 +594,7 @@ schedule (void)
   ASSERT (is_thread (next));
 
   thread_set_time();
-  printf("\nname: %s priority: %d avg time: %lld queue counter: %d", cur->name, cur->priority, thread_get_time(),cur->counter);
+  printf("\nname: %s avg time: %lld queue counter: %d", cur->name, thread_get_time(),cur->counter);
 
   if (cur != next)
     prev = switch_threads (cur, next);

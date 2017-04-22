@@ -1,0 +1,26 @@
+io bounded thread
+creating thread with id: 3
+io bounded thread
+creating thread with id: 4
+io bounded thread
+creating thread with id: 5
+cpu bounded thread
+creating thread with id: 6
+cpu bounded thread
+creating thread with id: 7
+thread dying: main next: thread 4
+name: main avg time: 0 exe time: 25 queue counter: 1
+thread dying: thread 4 next: thread 0
+name: thread 4 avg time: 0 exe time: 25 queue counter: 1
+thread dying: thread 0 next: thread 1
+name: thread 0 avg time: 2 exe time: 0 queue counter: 1
+thread dying: thread 1 next: thread 2
+name: thread 1 avg time: 150 exe time: 144 queue counter: 1
+thread dying: thread 2 next: thread 3
+name: thread 2 avg time: 151 exe time: 144 queue counter: 1
+thread dying: thread 3 next: main
+name: thread 3 avg time: 152 exe time: 144 queue counter: 1
+thread dying: main next: idle
+name: main avg time: 177 exe time: 25 queue counter: 1
+thread dying: idle next: main
+

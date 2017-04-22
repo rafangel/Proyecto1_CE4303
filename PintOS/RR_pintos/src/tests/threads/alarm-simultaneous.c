@@ -70,13 +70,13 @@ test_sleep (int thread_cnt, int iterations, int io_bounded)
       if(j < io_bounded){
 	printf("\nio bounded thread");
         test.iob = true;
-      	thread_create (name, 20, sleeper, &test);
+      	thread_create (name, PRI_DEFAULT, sleeper, &test);
         thread_set_nice (5);
       }
       else{
 	printf("\ncpu bounded thread");
         test.iob = true;
-      	thread_create (name, 50, cpu_function, &test);//PRI_DEFAULT
+      	thread_create (name, PRI_DEFAULT, cpu_function, &test);//PRI_DEFAULT
         thread_set_nice (12);
       }
 	j++;
