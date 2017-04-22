@@ -1,0 +1,46 @@
+io bounded thread
+creating thread with id: 3
+io bounded thread
+creating thread with id: 4
+io bounded thread
+creating thread with id: 5
+cpu bounded thread
+creating thread with id: 6
+cpu bounded thread
+creating thread with id: 7
+thread dying: main next: thread 0
+name: main avg time: 0 queue counter: 1
+thread dying: thread 0 next: thread 1
+name: thread 0 avg time: 0 queue counter: 1
+thread dying: thread 1 next: thread 2
+name: thread 1 avg time: 150 queue counter: 1
+thread dying: thread 2 next: thread 3
+name: thread 2 avg time: 151 queue counter: 1
+thread dying: thread 3 next: thread 4
+name: thread 3 avg time: 152 queue counter: 1
+thread dying: thread 4 next: main
+name: thread 4 avg time: 153 queue counter: 1
+thread dying: main next: idle
+name: main avg time: 192 queue counter: 1
+thread dying: idle next: main
+name: idle avg time: 195 queue counter: 1
+(alarm-simultaneous) iteration 0, thread 0: woke up after 10 ticks
+(alarm-simultaneous) iteration 0, thread 1: woke up 10 ticks later
+(alarm-simultaneous) iteration 0, thread 2: woke up 10 ticks later
+(alarm-simultaneous) iteration 0, thread 3: woke up 10 ticks later
+(alarm-simultaneous) iteration 0, thread 4: woke up 10 ticks later
+(alarm-simultaneous) iteration 1, thread 0: woke up 1 ticks later
+(alarm-simultaneous) iteration 1, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 3: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 4: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 0: woke up 1 ticks later
+(alarm-simultaneous) iteration 2, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 3: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 4: woke up 0 ticks later
+(alarm-simultaneous) end
+Execution of 'alarm-simultaneous' complete.
+
+thread dying: main next: idle
+name: main avg time: 287 queue counter: 1
