@@ -1,58 +1,50 @@
 io bounded thread
-creating thread with id: 3 priority: 20
+creating thread with id: 3
 io bounded thread
-creating thread with id: 4 priority: 20
-io bounded thread
-creating thread with id: 5 priority: 20
+creating thread with id: 4
 cpu bounded thread
-creating thread with id: 6 priority: 45
+creating thread with id: 5
 cpu bounded thread
-creating thread with id: 7 priority: 45
-name: main priority: 1 avg time: 0
-name: thread 3 priority: 45 avg time: 0
-name: thread 4 priority: 45 avg time: 0
-name: thread 3 priority: 45 avg time: 0
-name: thread 4 priority: 45 avg time: 0
+creating thread with id: 6
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 1 queue counter: 2
+name: thread 1 avg time: 1 queue counter: 2
+name: thread 2 avg time: 1 queue counter: 2
+name: thread 3 avg time: 0 queue counter: 2
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 2 queue counter: 3
+name: thread 1 avg time: 2 queue counter: 3
+name: thread 2 avg time: 3 queue counter: 3
+name: thread 3 avg time: 1 queue counter: 3
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4 queue counter: 4
+name: thread 1 avg time: 4 queue counter: 4
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 7 queue counter: 5
+name: thread 1 avg time: 7 queue counter: 5
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 10 queue counter: 6
+name: thread 1 avg time: 10 queue counter: 6
 
 (...)
 
-name: thread 4 priority: 45 avg time: 74
-name: thread 3 priority: 45 avg time: 74
-name: thread 4 priority: 45 avg time: 74
-name: thread 3 priority: 45 avg time: 74
-name: thread 0 priority: 20 avg time: 75
-name: thread 1 priority: 20 avg time: 75
-name: thread 2 priority: 20 avg time: 75
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 100
-name: thread 1 priority: 20 avg time: 100
-name: thread 2 priority: 20 avg time: 100
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 112
-name: thread 1 priority: 20 avg time: 113
-name: thread 2 priority: 20 avg time: 113
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 120
-name: thread 1 priority: 20 avg time: 120
-name: thread 2 priority: 20 avg time: 120
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 125
-name: thread 1 priority: 20 avg time: 125
-name: thread 2 priority: 20 avg time: 125
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 129
-name: thread 1 priority: 20 avg time: 129
-name: thread 2 priority: 20 avg time: 129
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 132
-name: thread 1 priority: 20 avg time: 132
-name: thread 2 priority: 20 avg time: 132
-name: main priority: 1 avg time: 0
-name: thread 0 priority: 20 avg time: 134
-name: main priority: 1 avg time: 0
-name: main priority: 1 avg time: 0
-name: main priority: 1 avg time: 0
-name: main priority: 1 avg time: 0
-
-(...)
+name: thread 0 avg time: 4266 queue counter: 149
+name: thread 1 avg time: 4288 queue counter: 149
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4323 queue counter: 150
+name: thread 1 avg time: 4345 queue counter: 150
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4380 queue counter: 151
+name: thread 1 avg time: 4402 queue counter: 151
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4437 queue counter: 152
+name: thread 1 avg time: 4460 queue counter: 152
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4495 queue counter: 153
+name: thread 1 avg time: 4518 queue counter: 153
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4553 queue counter: 154
+name: thread 1 avg time: 4576 queue counter: 154
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 4611 queue counter: 155
 

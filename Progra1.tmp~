@@ -156,6 +156,24 @@ Calendarizador Shortest Job First
 
 ---- Estructuras de datos ----
 
+>> int64_t start;
+> Tiempo, en "Ticks", de la última inserción del thread a la lista
+ de "ready". 
+
+>> int64_t elapsed_avg;
+> Tiempo promedio, en "Ticks", que el proceso pasó esperando en la
+ lista de "ready". 
+
+>> int64_t prev_time;
+> Tiempo , en "Ticks", en el que se ejecuta el thread, utilizado 
+para el calculo de "elapsed_avg". 
+ 
+>> int counter;
+> Cantidad de veces que el proceso estuvo en la lista de "ready".
+
+>> int64_t exe_time;
+> Tiempode ejecucion de la funcion del hilo.
+
 >> Copie la declaracion de cada estructura nueva utilizada por su 
 codigo, variables globales o estaticas, `struct', `typedef', etc.
 
@@ -165,9 +183,19 @@ palabras cada una.
 
 ---- ALGORITMOS ----
 
->> Explique en prosa el funcionamiento de su algoritmo, utilizando 
-el nombre de las variables utilizadas y funciones.
-
+>> Este algoritmo se encarga de procesar tareas y las prioriza por
+el trabajo mas corto. Para saber los tiempos de ejecucion se hace 
+por medio de pruebas aparte por la misma recomendacion de la 
+profesora. Se tienen dos fuciones en el archivo de prueba. Cada 
+una de las funciones tienen tiempos de ejecucion distintos 
+dependiendo de si es una operacion i/o bounded o cpu bounded entonces
+sabiendo que es se asigna el tiempo.
+>> En el archivo thread.h se agrega un parametro al thread llamado 
+exe_time que es la variable con el tiempo de ejecucion de cada hilo. 
+Para poder acceder a estos valores y no tener que implementar mas 
+codigo, un constructor o hasta replicacion de codigo se hace un get
+y un set de exe_time para desde el archivo de pruebas asignar el 
+tiempo de ejecucion.
 
 ---- SYNC ----
 
@@ -177,6 +205,9 @@ Justifique por que un lock podria o no podria funcionar para este
 algoritmo
 
 ---- JUSTIFICACION ----
+
+***Agregar que se trato dinamicamente para cada thread pero el timer de pintos presento problemas por el uso de ticks y on uno timepo real de ejecucion
+
 >>Describa la razon por la que se decidio implementar este diseño 
 y en que maneras es superior a otras soluciones que consideraron.
 >>Realize una corta critica, positiva o negativa, sobre su 
@@ -192,6 +223,20 @@ Calendarizador Round Robin
 
 ---- Estructuras de datos ----
 
+>> int64_t start;
+> Tiempo, en "Ticks", de la última inserción del thread a la lista
+ de "ready". 
+
+>> int64_t elapsed_avg;
+> Tiempo promedio, en "Ticks", que el proceso pasó esperando en la
+ lista de "ready". 
+
+>> int64_t prev_time;
+> Tiempo , en "Ticks", en el que se ejecuta el thread, utilizado 
+para el calculo de "elapsed_avg". 
+ 
+>> int counter;
+> Cantidad de veces que el proceso estuvo en la lista de "ready".
 
 
 ---- ALGORITMOS ----

@@ -172,22 +172,20 @@ para el calculo de "elapsed_avg".
 > Cantidad de veces que el proceso estuvo en la lista de "ready".
 
 >> int64_t exe_time;
-> Tiempode ejecucion de la funcion del hilo.
+> Tiempo de ejecucion de la funcion del hilo.
 
->> Copie la declaracion de cada estructura nueva utilizada por su 
-codigo, variables globales o estaticas, `struct', `typedef', etc.
+>> void init_thread2
+> Funcion encargada de asignar el valor del execution time
 
->> Explique las estructuras citadas anteriormente en menos de 30 
-palabras cada una.
 
 
 ---- ALGORITMOS ----
 
 >> Este algoritmo se encarga de procesar tareas y las prioriza por
 el trabajo mas corto. Para saber los tiempos de ejecucion se hace 
-por medio de pruebas aparte por la misma recomendacion de la 
+por medio de pruebas aparte esto la misma recomendacion de la 
 profesora. Se tienen dos fuciones en el archivo de prueba. Cada 
-una de las funciones tienen tiempos de ejecucion distintos 
+una de las funciones tiene tiempos de ejecucion distintos 
 dependiendo de si es una operacion i/o bounded o cpu bounded entonces
 sabiendo que es se asigna el tiempo.
 >> En el archivo thread.h se agrega un parametro al thread llamado 
@@ -196,7 +194,7 @@ Para poder acceder a estos valores y no tener que implementar mas
 codigo, un constructor o hasta replicacion de codigo se hace un get
 y un set de exe_time para desde el archivo de pruebas asignar el 
 tiempo de ejecucion.
-
+Sin embargo se dede de contar con una funcion init_thread2
 ---- SYNC ----
 
 >>Describa como existe una condicion de carrera en

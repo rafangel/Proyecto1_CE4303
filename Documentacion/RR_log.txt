@@ -2,49 +2,70 @@ io bounded thread
 creating thread with id: 3
 io bounded thread
 creating thread with id: 4
-cpu bounded thread
+io bounded thread
 creating thread with id: 5
 cpu bounded thread
 creating thread with id: 6
+cpu bounded thread
+creating thread with id: 7
 name: main avg time: 0 queue counter: 1
 name: thread 0 avg time: 1 queue counter: 2
 name: thread 1 avg time: 1 queue counter: 2
 name: thread 2 avg time: 1 queue counter: 2
 name: thread 3 avg time: 0 queue counter: 2
+name: thread 4 avg time: 0 queue counter: 2
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 2 queue counter: 3
-name: thread 1 avg time: 2 queue counter: 3
-name: thread 2 avg time: 3 queue counter: 3
-name: thread 3 avg time: 1 queue counter: 3
+name: thread 0 avg time: 4 queue counter: 3
+name: thread 1 avg time: 4 queue counter: 3
+name: thread 2 avg time: 4 queue counter: 3
+name: thread 3 avg time: 2 queue counter: 3
+name: thread 4 avg time: 2 queue counter: 3
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4 queue counter: 4
-name: thread 1 avg time: 4 queue counter: 4
+name: thread 0 avg time: 7 queue counter: 4
+name: thread 1 avg time: 7 queue counter: 4
+name: thread 2 avg time: 8 queue counter: 4
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 7 queue counter: 5
-name: thread 1 avg time: 7 queue counter: 5
-name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 10 queue counter: 6
-name: thread 1 avg time: 10 queue counter: 6
+name: thread 0 avg time: 11 queue counter: 5
 
 (...)
 
-name: thread 0 avg time: 4266 queue counter: 149
-name: thread 1 avg time: 4288 queue counter: 149
+name: thread 2 avg time: 2536 queue counter: 97
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4323 queue counter: 150
-name: thread 1 avg time: 4345 queue counter: 150
+name: thread 0 avg time: 2556 queue counter: 98
+name: thread 1 avg time: 2573 queue counter: 98
+name: thread 2 avg time: 2586 queue counter: 98
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4380 queue counter: 151
-name: thread 1 avg time: 4402 queue counter: 151
+name: thread 0 avg time: 2606 queue counter: 99
+name: thread 1 avg time: 2623 queue counter: 99
+name: thread 2 avg time: 2637 queue counter: 99
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4437 queue counter: 152
-name: thread 1 avg time: 4460 queue counter: 152
+name: thread 0 avg time: 2657 queue counter: 100
+name: thread 1 avg time: 2674 queue counter: 100
+name: thread 2 avg time: 2688 queue counter: 100
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4495 queue counter: 153
-name: thread 1 avg time: 4518 queue counter: 153
+name: thread 0 avg time: 2708 queue counter: 101
+name: thread 1 avg time: 2725 queue counter: 101
+name: thread 2 avg time: 2740 queue counter: 101
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4553 queue counter: 154
-name: thread 1 avg time: 4576 queue counter: 154
+name: thread 0 avg time: 2760 queue counter: 102
+name: thread 1 avg time: 2777 queue counter: 102
+name: thread 2 avg time: 2792 queue counter: 102
+
+(...)
+
 name: main avg time: 0 queue counter: 1
-name: thread 0 avg time: 4611 queue counter: 155
+name: thread 0 avg time: 16893 queue counter: 263
+name: thread 1 avg time: 16928 queue counter: 263
+name: thread 2 avg time: 16701 queue counter: 263
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 17022 queue counter: 264
+name: thread 1 avg time: 17058 queue counter: 264
+name: thread 2 avg time: 16830 queue counter: 264
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 17152 queue counter: 265
+name: thread 1 avg time: 17188 queue counter: 265
+name: thread 2 avg time: 16959 queue counter: 265
+name: main avg time: 0 queue counter: 1
+name: thread 0 avg time: 17282 queue counter: 266
+name: thread 1 avg time: 17319 queue counter: 266
 
