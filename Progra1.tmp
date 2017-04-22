@@ -212,8 +212,6 @@ dos procesos compitiendo por el mismo espacio en la region critica.
 
 ---- JUSTIFICACION ----
 
-***Agregar que se trato dinamicamente para cada thread pero el timer de pintos presento problemas por el uso de ticks y on uno timepo real de ejecucion
-
 >>Describa la razon por la que se decidio implementar este diseño 
 y en que maneras es superior a otras soluciones que consideraron.
 
@@ -275,9 +273,7 @@ para el calculo de "elapsed_avg".
 
 ---- ALGORITMOS ----
 
->> Explique en prosa el funcionamiento de su algoritmo, utilizando 
-el nombre de las variables utilizadas y funciones.
-Este algoritmo calendariza los procesos asignando el procesador por 
+>> Este algoritmo calendariza los procesos asignando el procesador por 
 un tiempo determinado. Este tiempo determinado es el quantum. El quantun 
 debe ser inferior a la duracion promedio del 80% de los procesos 
 (Silberchatz, Galvin y Gagne 2010:188). Este primera recomendacion es
@@ -311,8 +307,8 @@ desempeño del procesador.
 
 >> Para el diseño se toma como pieza fundamental definir un quantum
 correcto. Se parte de que se saben los tiempos de ejecucion de los procesos 
-que se ejecutan. Tomando en cuenta las recomendaciones del libro de Galvin y 
-Gagne y lo visto en clase se establece un quantum de 30. 
+que se ejecutan. Tomando en cuenta las recomendaciones del libro de Silberchatz, 
+Galvin y Gagne y lo visto en clase se establece un quantum de 30. 
 >> La funcion que dura mas tiempo es de 144 ticks y la de menos es de 25 ticks
 por lo que se decide como decisionde diseño un quantum de 30. Esto para que los 
 procesos pequeños terminen en un quantum. El problema de definir un quantum
