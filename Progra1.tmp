@@ -183,20 +183,19 @@ palabras cada una.
 
 ---- ALGORITMOS ----
 
->> Explique en prosa el funcionamiento de su algoritmo, utilizando 
-el nombre de las variables utilizadas y funciones.
-
->> Este algoritmo se encarga de procesar tareas y las prioriza por el 
-trabajo mas corto. Para saber los tiempos de ejecucion se hace por medio 
-de pruebas aparte por la misma recomendacion de la profesora. Se 
-tienen dos fuciones en el archivo de prueba. Cada una de las funciones 
-tienen tiempos de ejecucion distintos dependiendo de si es una operacion
-i/o bounded o cpu bounded entonces sabiendo que es se asigna el tiempo.
->> En el archivo thread.h se agrega un parametro al thread llamado exe_time
-que es la variable con el tiempo de ejecucion de cada hilo. Para poder acceder
-a estos valores y no tener que implementar mas codigo, un constructor o hasta
-replicacion de codigo se hace un get y un set de exe_time para desde el archivo 
-de pruebas asignar el tiempo de ejecucion.
+>> Este algoritmo se encarga de procesar tareas y las prioriza por
+el trabajo mas corto. Para saber los tiempos de ejecucion se hace 
+por medio de pruebas aparte por la misma recomendacion de la 
+profesora. Se tienen dos fuciones en el archivo de prueba. Cada 
+una de las funciones tienen tiempos de ejecucion distintos 
+dependiendo de si es una operacion i/o bounded o cpu bounded entonces
+sabiendo que es se asigna el tiempo.
+>> En el archivo thread.h se agrega un parametro al thread llamado 
+exe_time que es la variable con el tiempo de ejecucion de cada hilo. 
+Para poder acceder a estos valores y no tener que implementar mas 
+codigo, un constructor o hasta replicacion de codigo se hace un get
+y un set de exe_time para desde el archivo de pruebas asignar el 
+tiempo de ejecucion.
 
 ---- SYNC ----
 
